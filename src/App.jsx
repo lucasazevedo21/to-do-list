@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import TodoList from './TodoList'
-import { Titles, InputContainer, ListContainer, Footer, Status } from './styles/styles'
 import { GlobalStyle } from './styles/globalStyles'
+import { Title, InputContainer, ListContainer, Footer } from './styles/styles'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
-function App() {
+export default function App() {
   const [todos, setTodos] = useState([])
   const todoNameRef = useRef()
 
@@ -49,21 +49,18 @@ function App() {
     <>
       <GlobalStyle />
 
-      <Titles>
-        <h1>To-do List</h1>
-      </Titles>
+      <Title>To-do List</Title>
 
       <InputContainer>
-        <input ref={todoNameRef} type="text" placeholder="Write your to-do here" />
-        <button onClick={handleAddTodo}>Add To-do</button>
+        <input ref={todoNameRef} type="text" placeholder="New Task" />
+        <button onClick={handleAddTodo}>Add</button>
       </InputContainer>
 
       <ListContainer>
-        <h2>Your List</h2>
-        <Status>
-          <div>{todos.filter(todo => !todo.complete).length} left to do</div>
-          <button onClick={handleClearTodos}>Clear Complete</button>
-        </Status>
+        <div>
+          <p>{todos.filter(todo => !todo.complete).length} left to do</p>
+          <button onClick={handleClearTodos}>Clear</button>
+        </div>
         <TodoList todos={todos} toggleTodo={toggleTodo} />
       </ListContainer>
 
@@ -73,5 +70,3 @@ function App() {
     </>
   )
 }
-
-export default App
