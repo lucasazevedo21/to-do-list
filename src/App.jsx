@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import TodoList from './TodoList'
 import { GlobalStyle } from './styles/globalStyles'
-import { Title, InputContainer, ListContainer, Footer } from './styles/styles'
+import { InputContainer, ListContainer } from './styles/styles'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
@@ -52,7 +52,7 @@ export default function App() {
 		<>
 			<GlobalStyle />
 			<main>
-				<Title>To-do List</Title>
+				<h1>To-do List</h1>
 
 				<InputContainer>
 					<input ref={todoNameRef} type="text" placeholder="New Task" />
@@ -64,13 +64,15 @@ export default function App() {
 						<p>{todos.filter((todo) => !todo.complete).length} left to do</p>
 						<button onClick={handleClearTodos}>Clear</button>
 					</div>
-					<TodoList todos={todos} toggleTodo={toggleTodo} />
+					<ul>
+						<TodoList todos={todos} toggleTodo={toggleTodo} />
+					</ul>
 				</ListContainer>
 			</main>
 
-			<Footer>
-				<p>2021 - Lucas Azevedo</p>
-			</Footer>
+			<footer>
+				<span>2021 - Lucas Azevedo</span>
+			</footer>
 		</>
 	)
 }

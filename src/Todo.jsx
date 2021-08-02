@@ -4,8 +4,8 @@ import styled from 'styled-components'
 export const SingleTodo = styled.li`
 	border: 1px solid #747171;
 	border-radius: 5px;
-	width: 700px;
-	padding: 12px;
+	width: 100%;
+	padding: 7px;
 	margin: 0 auto;
 	margin-bottom: 0.7rem;
 	list-style: none;
@@ -28,15 +28,13 @@ export default function Todo({ todo, toggleTodo }) {
 	}
 
 	return (
-		<ul>
-			<SingleTodo>
-				<input
-					type="checkbox"
-					checked={todo.complete}
-					onChange={handleTodoClick}
-				/>
-				{todo.name}
-			</SingleTodo>
-		</ul>
+		<SingleTodo>
+			<input
+				type="checkbox"
+				checked={todo.complete}
+				onChange={handleTodoClick}
+			/>
+			{todo.name}
+		</SingleTodo>
 	)
 }
