@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import TodoList from './TodoList'
 import { GlobalStyle } from './styles/globalStyles'
 import { InputContainer, ListContainer } from './styles/styles'
+import Todo from './Todo'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
@@ -53,7 +53,6 @@ export default function App() {
 			<GlobalStyle />
 			<main>
 				<h1>To-do List</h1>
-
 				<InputContainer>
 					<input ref={todoNameRef} type="text" placeholder="New Task" />
 					<button onClick={handleAddTodo}>Add</button>
@@ -65,11 +64,12 @@ export default function App() {
 						<button onClick={handleClearTodos}>Clear</button>
 					</div>
 					<ul>
-						<TodoList todos={todos} toggleTodo={toggleTodo} />
+						{todos.map((todo) => {
+							return <Todo key={todo.id} toggleTodo={toggleTodo} todo={todo} />
+						})}
 					</ul>
 				</ListContainer>
 			</main>
-
 			<footer>
 				<span>2021 - Lucas Azevedo</span>
 			</footer>
